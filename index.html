@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Folio: Kepelbagaian Budaya & Peradaban Majmuk</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --accent: #06b6d4;
+            --bg-grad: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(255, 255, 255, 0.3);
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --radius-lg: 16px;
+            --radius-md: 10px;
+            --shadow-glow: 0 20px 25px -5px rgba(79, 70, 229, 0.15), 0 8px 10px -6px rgba(79, 70, 229, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f8fafc;
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Hero Header */
+        header {
+            background: var(--bg-grad);
+            color: white;
+            padding: 4rem 1.5rem 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 60%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        header h1 {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #ffffff, #c7d2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* Container Layout */
+        .container {
+            max-width: 1150px;
+            margin: -3rem auto 3rem;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Top Bar Info & Drawer Trigger */
+        .info-bar {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            box-shadow: var(--shadow-glow);
+            margin-bottom: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .info-item i {
+            font-size: 1.2rem;
+            color: var(--primary);
+            background: #e0e7ff;
+            padding: 0.6rem;
+            border-radius: 50%;
+        }
+
+        .info-item div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-item span.label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .info-item span.val {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .btn-members {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.4rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-members:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Modern Navigation Tabs */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            scrollbar-width: none;
+        }
+
+        .tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            background: white;
+            border: 1px solid #e2e8f0;
+            color: var(--text-muted);
+            padding: 0.85rem 1.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+            border-color: #c7d2fe;
+            background: #f8fafc;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+        }
+
+        /* Content Container */
+        .tab-content {
+            display: none;
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e2e8f0;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-header {
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 1rem;
+        }
+
+        .content-header h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        /* Media Grid Card */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .card {
+            background: #f8fafc;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 1.25rem;
+        }
+
+        .card-body h4 {
+            font-size: 1.1rem;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-body p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Styled Bullet Lists */
+        .styled-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .styled-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 0.85rem;
+            color: #334155;
+        }
+
+        .styled-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--primary);
+            font-size: 0.85rem;
+            background: #e0e7ff;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Accordion Component */
+        .accordion {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            padding: 1.1rem 1.4rem;
+            width: 100%;
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1e293b;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .accordion:hover {
+            background: #f1f5f9;
+        }
+
+        .accordion i {
+            transition: transform 0.3s ease;
+            color: var(--primary);
+        }
+
+        .accordion.active {
+            border-color: var(--primary);
+            background: #f0f3ff;
+        }
+
+        .accordion.active i {
+            transform: rotate(180deg);
+        }
+
+        .panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-top: none;
+            border-radius: 0 0 var(--radius-md) var(--radius-md);
+            padding: 0 1.4rem;
+        }
+
+        .panel-content {
+            padding: 1.25rem 0;
+            color: #475569;
+        }
+
+        /* Side Drawer for Group Members */
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 100%;
+            max-width: 380px;
+            height: 100%;
+            background: white;
+            z-index: 101;
+            box-shadow: -10px 0 25px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .drawer.active {
+            right: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 1rem;
+        }
+
+        .btn-close {
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .member-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            background: #f8fafc;
+        }
+
+        .member-avatar {
+            width: 45px;
+            height: 45px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .member-details h5 {
+            font-size: 0.95rem;
+            color: #0f172a;
+        }
+
+        .member-details p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            font-size: 0.9rem;
+            margin-top: 4rem;
+            border-top: 1px solid #1e293b;
+        }
+
+        @media (max-width: 768px) {
+            .info-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .btn-members {
+                width: 100%;
+                justify-content: center;
+            }
+            .tab-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Header -->
+    <header>
+        <div class="header-content">
+            <span class="badge">E-Folio MPU21072</span>
+            <h1>Penghayatan Etika & Peradaban</h1>
+            <p>Menerangkan proses pemerkasaan kesepaduan sosial merentas bangsa di Malaysia.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Top Info Bar -->
+        <div class="info-bar">
+            <div class="info-item">
+                <i class="fa-solid fa-book-open"></i>
+                <div>
+                    <span class="label">Tajuk Tugasan</span>
+                    <span class="val">Topik 6: Kepelbagaian Budaya</span>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <div>
+                    <span class="label">Pensyarah</span>
+                    <span class="val">Mohd Taha Bin Rulam Ahmad</span>
+                </div>
+            </div>
+            <button class="btn-members" onclick="toggleDrawer()">
+                <i class="fa-solid fa-users"></i> Ahli Kumpulan
+            </button>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab(event, 'pengenalan')">
+                <i class="fa-solid fa-compass"></i> 1. Pengenalan
+            </button>
+            <button class="tab-btn" onclick="openTab(event, 'asas')">
+                <i class="fa-solid fa-timeline"></i> 2. Asas Pembentukan
+            </button>
+            <button class="tab-btn" onclick="openTab(event, 'saluran')">
+                <i class="fa-solid fa-handshake"></i> 3. Saluran Utama
+            </button>
+            <button class="tab-btn" onclick="openTab(event, 'cabaran')">
+                <i class="fa-solid fa-triangle-exclamation"></i> 4. Cabaran
+            </button>
+            <button class="tab-btn" onclick="openTab(event, 'cadangan')">
+                <i class="fa-solid fa-flag"></i> 5. Kesimpulan
+            </button>
+        </div>
+
+        <!-- Tab 1: Pengenalan -->
+        <div id="pengenalan" class="tab-content active">
+            <div class="content-header">
+                <h2>Pengenalan</h2>
+            </div>
+            <p style="margin-bottom: 1.5rem;">
+                Malaysia merupakan sebuah <strong>masyarakat kepelbagaian</strong> yang dibentuk menerusi cantuman peradaban Melayu sebagai teras utama. Ia disusuli pengaruh peradaban Asia (Cina, India, Timur Tengah), peradaban Barat, dan kini disulami oleh peradaban globalisasi digital.
+            </p>
+
+            <div class="grid-layout">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=600&q=80" alt="Kuala Lumpur Skyline">
+                    <div class="card-body">
+                        <h4>Masyarakat Majmuk</h4>
+                        <p>Pembentukan identiti nasional berasaskan keharmonian pelbagai etnik.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80" alt="Perpaduan Rakyat">
+                    <div class="card-body">
+                        <h4>Kesepaduan Sosial</h4>
+                        <p>Interaksi harian yang membina hubungan harmoni merentas kaum.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Objektif Utama</h3>
+            <ul class="styled-list">
+                <li>Menjelaskan peranan kepelbagaian budaya sebagai ejen penyatuan rakyat berbilang kaum.</li>
+                <li>Menerangkan proses pemerkasaan kesepaduan sosial mengikut acuan Malaysia.</li>
+            </ul>
+        </div>
+
+        <!-- Tab 2: Asas Pembentukan -->
+        <div id="asas" class="tab-content">
+            <div class="content-header">
+                <h2>Asas Pembentukan Kepelbagaian Budaya</h2>
+            </div>
+            <p style="margin-bottom: 1rem;">
+                Silibik Topik 5 (Pembinaan Peradaban Majmuk di Malaysia) menjelaskan bahawa evolusi kepelbagaian berlaku secara berperingkat menerusi sejarah sosial negara:
+            </p>
+
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span><i class="fa-solid fa-landmark" style="margin-right: 8px;"></i> 1. Sejarah Peradaban Majmuk</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="panel">
+                <div class="panel-content">
+                    Interaksi awal Alam Melayu bersama pedagang antarabangsa dan era penjajahan telah menyerap pelbagai unsur budaya luar ke dalam peradaban tempatan secara dinamik.
+                </div>
+            </div>
+
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span><i class="fa-solid fa-city" style="margin-right: 8px;"></i> 2. Transformasi Sosial Pasca-2000</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="panel">
+                <div class="panel-content">
+                    Pembangunan pesat, perbandaran, dan modenisasi melahirkan kerencaman sosial. Fenomena ini menipiskan batas etnik dan memperkukuh hubungan sosial secara horizontal merentas etnik dan agama.
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Saluran Utama -->
+        <div id="saluran" class="tab-content">
+            <div class="content-header">
+                <h2>Saluran Utama Memperkukuh Hubungan Kaum</h2>
+            </div>
+
+            <div class="grid-layout">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="Makanan Malaysia">
+                    <div class="card-body">
+                        <h4>Seni Kuliner</h4>
+                        <p>Makanan seperti Nasi Lemak, Roti Canai, dan Dim Sum menjadi medan ruang sosial bersama.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1532375810709-75b1da00537c?auto=format&fit=crop&w=600&q=80" alt="Kebudayaan Tradisional">
+                    <div class="card-body">
+                        <h4>Etos Simbolisme</h4>
+                        <p>Busana, perayaan, dan warisan budaya yang dikongsi sebagai identiti nasional.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">A. Perayaan & Kebudayaan</h3>
+            <ul class="styled-list">
+                <li><strong>Amalan Rumah Terbuka:</strong> Menerapkan nilai toleransi dan perasaan kebersamaan (<em>belonging together</em>).</li>
+                <li><strong>Warisan Etno-Simbolisme:</strong> Pakaian dan seni budaya menjadi kebanggaan kolektif rakyat Malaysia.</li>
+            </ul>
+
+            <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">B. Tapak Integrasi & Perlembagaan</h3>
+            <ul class="styled-list">
+                <li><strong>Pasak Perlembagaan Persekutuan:</strong> Memelihara hak anak watan sambil menjamin kebebasan budaya dan agama etnik lain dalam suasana harmoni.</li>
+                <li><strong>Bahasa Kebangsaan:</strong> Bahasa Melayu berfungsi sebagai alat komunikasi utama tanpa menyekat penggunaan bahasa ibunda.</li>
+            </ul>
+        </div>
+
+        <!-- Tab 4: Cabaran -->
+        <div id="cabaran" class="tab-content">
+            <div class="content-header">
+                <h2>Cabaran Dalam Kesepaduan Budaya</h2>
+            </div>
+
+            <div class="grid-layout">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=600&q=80" alt="Media Sosial">
+                    <div class="card-body">
+                        <h4>Sentimen Media Digital</h4>
+                        <p>Penyebaran maklumat yang memfokuskan perbezaan negatif di platform sosial.</p>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="styled-list">
+                <li><strong>Pandangan Dikotomi Negatif:</strong> Perbezaan etnik kerap dilihat sebagai konflik berbanding satu keunikan yang disyukuri.</li>
+                <li><strong>Persaingan Bangsa Idaman:</strong> Wujud pelbagai gagasan identiti nasional (seperti <em>Bangsa Malaysia</em> atau <em>Malaysian Malaysia</em>) yang memerlukan keterangkuman.</li>
+            </ul>
+        </div>
+
+        <!-- Tab 5: Cadangan & Kesimpulan -->
+        <div id="cadangan" class="tab-content">
+            <div class="content-header">
+                <h2>Cadangan & Kesimpulan</h2>
+            </div>
+
+            <h3 style="margin-bottom: 0.5rem;">Cadangan Penambahbaikan</h3>
+            <ul class="styled-list">
+                <li>Mengukuhkan integrasi <em>inter-ethnic</em> (antara kaum) dan <em>intra-ethnic</em> (dalaman kaum) menerusi aktiviti komuniti.</li>
+                <li>Memanfaatkan media digital untuk menyebarkan naratif positif kepelbagaian budaya.</li>
+            </ul>
+
+            <div style="background: #e0e7ff; border-left: 4px solid var(--primary); padding: 1.25rem; border-radius: 0 var(--radius-md) var(--radius-md) 0; margin-top: 2rem;">
+                <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Kesimpulan</h4>
+                <p style="color: #334155; font-size: 0.95rem;">
+                    Kepelbagaian budaya di Malaysia merupakan etos nasional yang mengikat perpaduan rakyat dengan negara. Pembinaan negara-bangsa acuan Malaysia bergantung kepada iltizam bersama dalam memelihara kesepaduan sosial berasaskan keadilan, demokrasi, dan tadbir urus yang baik.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Side Drawer: Ahli Kumpulan -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
+    <div class="drawer" id="drawer">
+        <div class="drawer-header">
+            <h3>Ahli Kumpulan</h3>
+            <button class="btn-close" onclick="toggleDrawer()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        
+        <div class="member-card">
+            <div class="member-avatar">AN</div>
+            <div class="member-details">
+                <h5>Armand Nizarriel</h5>
+                <p>19DIT24F1006</p>
+            </div>
+        </div>
+        <div class="member-card">
+            <div class="member-avatar">AK</div>
+            <div class="member-details">
+                <h5>Ahli Kumpulan 2</h5>
+                <p>19DIT24FXXXX</p>
+            </div>
+        </div>
+        <div class="member-card">
+            <div class="member-avatar">AK</div>
+            <div class="member-details">
+                <h5>Ahli Kumpulan 3</h5>
+                <p>19DIT24FXXXX</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 E-Folio MPU21072 | Jabatan Pengajian Am, Politeknik Muadzam Shah</p>
+    </footer>
+
+    <!-- JavaScript Controls -->
+    <script>
+        // Tab switching logic
+        function openTab(evt, tabName) {
+            const tabcontent = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            const tablinks = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Accordion logic
+        function toggleAccordion(element) {
+            element.classList.toggle("active");
+            const panel = element.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        }
+
+        // Drawer logic
+        function toggleDrawer() {
+            document.getElementById("drawer").classList.toggle("active");
+            document.getElementById("drawerOverlay").classList.toggle("active");
+        }
+    </script>
+</body>
+</html>
