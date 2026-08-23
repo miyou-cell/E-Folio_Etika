@@ -556,10 +556,10 @@
             </p>
 
             <div class="grid-layout">
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=600&q=80" alt="Kuala Lumpur Skyline" data-description="Tulis penerangan panjang anda di sini tentang gambar ini...">
-                    <div class="card-body">
-                        <h4>Masyarakat Majmuk</h4>
+                <div class="card" onclick="openCardModal(this)" data-full-text="Pembentukan identiti nasional di Malaysia adalah berasaskan keharmonian pelbagai etnik. Ia merangkumi integrasi budaya, persefahaman, serta penghormatan terhadap kepelbagaian tradisi yang menjadi teras kekuatan negara dalam era globalisasi digital." style="cursor: pointer;">
+                    <img src="images/klcc.jpg" alt="Masyarakat Majmuk">
+                    <div class="card-content">
+                        <h3>Masyarakat Majmuk</h3>
                         <p>Pembentukan identiti nasional berasaskan keharmonian pelbagai etnik.</p>
                     </div>
                 </div>
@@ -1520,12 +1520,13 @@
         <p>&copy; 2026 E-Folio MPU21072 | Jabatan Pengajian Am, Politeknik Muadzam Shah</p>
     </footer>
     
-<!-- Image Modal Viewer with Caption -->
-    <div id="imageModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.85);">
-        <span id="closeBtn" style="position: absolute; top: 20px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer;">&times;</span>
-        <div style="margin: auto; display: block; width: 80%; max-width: 700px; text-align: center; position: relative; top: 50%; transform: translateY(-50%);">
-            <img id="expandedImg" style="width: 100%; max-height: 60vh; object-fit: contain; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.5);">
-            <p id="caption" style="margin-top: 15px; color: #f1f1f1; font-size: 16px; line-height: 1.5; font-family: sans-serif;"></p>
+<!-- Full Card Overlay Modal -->
+    <div id="cardModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.85);">
+        <span id="cardCloseBtn" style="position: absolute; top: 20px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer;">&times;</span>
+        <div style="background: #ffffff; margin: 10vh auto; padding: 20px; width: 90%; max-width: 600px; border-radius: 12px; box-shadow: 0 5px 25px rgba(0,0,0,0.5); position: relative;">
+            <img id="modalCardImg" style="width: 100%; max-height: 40vh; object-fit: cover; border-radius: 8px;">
+            <h2 id="modalCardTitle" style="margin-top: 20px; color: #111; font-size: 24px;"></h2>
+            <p id="modalCardDesc" style="margin-top: 10px; color: #555; font-size: 16px; line-height: 1.6;"></p>
         </div>
     </div>
     
@@ -1562,38 +1563,41 @@
             document.getElementById("drawerOverlay").classList.toggle("active");
         }
 
-        // Image Modal logic with caption support
+        function openCardModal(cardElement) {
+            const modal = document.getElementById("cardModal");
+            const modalImg = document.getElementById("modalCardImg");
+            const modalTitle = document.getElementById("modalCardTitle");
+            const modalDesc = document.getElementById("modalCardDesc");
+
+        // Extract content from the clicked card
+            const imgSrc = cardElement.querySelector("img").src;
+            const titleText = cardElement.querySelector("h3").innerText;
+            const fullText = cardElement.getAttribute("data-full-text");
+
+        // Assign to modal elements
+            modalImg.src = imgSrc;
+            modalTitle.innerText = titleText;
+            modalDesc.innerText = fullText;
+
+        // Show modal
+            modal.style.display = "block";
+    }
+
+    // Close modal logic
         document.addEventListener("DOMContentLoaded", function() {
-            const modal = document.getElementById("imageModal");
-            const modalImg = document.getElementById("expandedImg");
-            const captionText = document.getElementById("caption");
-            const closeBtn = document.getElementById("closeBtn");
-            const images = document.querySelectorAll(".card img");
+            const modal = document.getElementById("cardModal");
+            const closeBtn = document.getElementById("cardCloseBtn");
 
-            images.forEach(img => {
-                img.style.cursor = "pointer";
-                img.addEventListener("click", function() {
-                    modal.style.display = "block";
-                    modalImg.src = this.src;
-                    // Pulls text from the image's data-description attribute
-                    captionText.innerHTML = this.getAttribute("data-description") || "No description provided.";
-                });
-            });
+        closeBtn.addEventListener("click", function() {
+            modal.style.display = "none";
+        });
 
-            if (closeBtn) {
-                closeBtn.addEventListener("click", function() {
-                    modal.style.display = "none";
-                });
-            }
-
-            if (modal) {
-                modal.addEventListener("click", function(event) {
-                    if (event.target === modal) {
-                        modal.style.display = "none";
-                    }
-                });
+        modal.addEventListener("click", function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
             }
         });
+    });
     </script>
 
 </body>
