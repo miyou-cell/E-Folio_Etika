@@ -554,16 +554,30 @@
             <p style="margin-bottom: 1.5rem;">
                 Malaysia merupakan sebuah <strong>masyarakat kepelbagaian</strong> yang dibentuk menerusi cantuman peradaban Melayu sebagai teras utama. Ia disusuli pengaruh peradaban Asia (Cina, India, Timur Tengah), peradaban Barat, dan kini disulami oleh peradaban globalisasi digital.
             </p>
-
-            <div class="grid-layout">
+        
+            <!-- Grid Container with inline flex/grid styling -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                
                 <!-- Card 1 -->
-                <div class="card" onclick="openCardModal(this)" data-full-text="Pembentukan identiti nasional di Malaysia adalah berasaskan keharmonian pelbagai etnik. Ia merangkumi integrasi budaya, persefahaman, serta penghormatan terhadap kepelbagaian tradisi yang menjadi teras kekuatan negara dalam era globalisasi digital." style="cursor: pointer;">
-                    <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=600&q=80" alt="Masyarakat Majmuk">
-                    <div class="card-body">
-                        <h3>Masyarakat Majmuk</h3>
-                        <p>Pembentukan identiti nasional berasaskan keharmonian pelbagai etnik.</p>
+                <div class="card" onclick="openCardModal(this)" data-full-text="Pembentukan identiti nasional di Malaysia adalah berasaskan keharmonian pelbagai etnik. Ia merangkumi integrasi budaya, persefahaman, serta penghormatan terhadap kepelbagaian tradisi yang menjadi teras kekuatan negara dalam era globalisasi digital." style="cursor: pointer; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; flex-direction: column; height: 100%;">
+                    <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=600&q=80" alt="Masyarakat Majmuk" style="width: 100%; height: 180px; object-fit: cover;">
+                    <div class="card-body" style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
+                        <h3 style="margin: 0 0 8px 0; font-size: 18px; color: #111;">Masyarakat Majmuk</h3>
+                        <p style="margin: 0; color: #555; font-size: 14px; line-height: 1.5;">Pembentukan identiti nasional berasaskan keharmonian pelbagai etnik.</p>
                     </div>
                 </div>
+
+        <!-- Card 2 -->
+        <div class="card" onclick="openCardModal(this)" data-full-text="Kesepaduan sosial merujuk kepada keadaan berbaik-baik, kestabilan, dan rasa kebersamaan yang wujud antara rakyat pelbagai kaum dan latar belakang di Malaysia melalui interaksi sosial harian." style="cursor: pointer; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; flex-direction: column; height: 100%;">
+            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80" alt="Kuala Lumpur Skyline" style="width: 100%; height: 180px; object-fit: cover;">
+            <div class="card-body" style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
+                <h3 style="margin: 0 0 8px 0; font-size: 18px; color: #111;">Kesepaduan Sosial</h3>
+                <p style="margin: 0; color: #555; font-size: 14px; line-height: 1.5;">Interaksi harian yang membina hubungan harmoni merentas kaum.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
 
                 <!-- Card 2 (Updated to match Card 1 structure and functionality) -->
                 <div class="card" onclick="openCardModal(this)" data-full-text="Kesepaduan sosial merujuk kepada keadaan berbaik-baik, kestabilan, dan rasa kebersamaan yang wujud antara rakyat pelbagai kaum dan latar belakang di Malaysia melalui interaksi sosial harian." style="cursor: pointer;">
