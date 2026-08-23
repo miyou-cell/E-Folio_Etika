@@ -545,8 +545,7 @@
                 <i class="fa-solid fa-flag"></i> 5. Kesimpulan
             </button>
         </div>
-
-<!-- Tab 1: Pengenalan -->
+        <!-- Tab 1: Pengenalan -->
         <div id="pengenalan" class="tab-content active">
             <div class="content-header">
                 <h2>Pengenalan</h2>
@@ -555,27 +554,74 @@
                 Malaysia merupakan sebuah <strong>masyarakat kepelbagaian</strong> yang dibentuk menerusi cantuman peradaban Melayu sebagai teras utama. Ia disusuli pengaruh peradaban Asia (Cina, India, Timur Tengah), peradaban Barat, dan kini disulami oleh peradaban globalisasi digital.
             </p>
         
-            <!-- Grid Container with inline flex/grid styling -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+            <!-- Main Container: Cards on Left, Definisi on Right -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; margin-bottom: 2.5rem;">
                 
-                <!-- Card 1 -->
-                <div class="card" onclick="openCardModal(this)" data-full-text="Pembentukan identiti nasional di Malaysia adalah berasaskan keharmonian pelbagai etnik. Ia merangkumi integrasi budaya, persefahaman, serta penghormatan terhadap kepelbagaian tradisi yang menjadi teras kekuatan negara dalam era globalisasi digital." style="cursor: pointer; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; flex-direction: column; height: 100%;">
-                    <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=600&q=80" alt="Masyarakat Majmuk" style="width: 100%; height: 180px; object-fit: cover;">
-                    <div class="card-body" style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
-                        <h3 style="margin: 0 0 8px 0; font-size: 18px; color: #111;">Masyarakat Majmuk</h3>
-                        <p style="margin: 0; color: #555; font-size: 14px; line-height: 1.5;">Pembentukan identiti nasional berasaskan keharmonian pelbagai etnik.</p>
+                <!-- Left Side: Cards Grid -->
+                <div style="display: grid; grid-template-columns: 1fr; gap: 20px;">
+                    
+                    <!-- Card 1 -->
+                    <div class="card" onclick="openCardModal(this)" data-full-text="Pembentukan identiti nasional di Malaysia adalah berasaskan keharmonian pelbagai etnik. Ia merangkumi integrasi budaya, persefahaman, serta penghormatan terhadap kepelbagaian tradisi yang menjadi teras kekuatan negara dalam era globalisasi digital." style="cursor: pointer; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
+                        <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=600&q=80" alt="Masyarakat Majmuk" style="width: 100%; height: 180px; object-fit: cover;">
+                        <div class="card-body" style="padding: 20px; display: flex; flex-direction: column;">
+                            <h3 style="margin: 0 0 8px 0; font-size: 18px; color: #111;">Masyarakat Majmuk</h3>
+                            <p style="margin: 0; color: #555; font-size: 14px; line-height: 1.5;">Pembentukan identiti nasional berasaskan keharmonian pelbagai etnik.</p>
+                        </div>
                     </div>
+        
+                    <!-- Card 2 -->
+                    <div class="card" onclick="openCardModal(this)" data-full-text="Kesepaduan sosial merujuk kepada keadaan berbaik-baik, kestabilan, dan rasa kebersamaan yang wujud antara rakyat pelbagai kaum dan latar belakang di Malaysia melalui interaksi sosial harian." style="cursor: pointer; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
+                        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80" alt="Kuala Lumpur Skyline" style="width: 100%; height: 180px; object-fit: cover;">
+                        <div class="card-body" style="padding: 20px; display: flex; flex-direction: column;">
+                            <h3 style="margin: 0 0 8px 0; font-size: 18px; color: #111;">Kesepaduan Sosial</h3>
+                            <p style="margin: 0; color: #555; font-size: 14px; line-height: 1.5;">Interaksi harian yang membina hubungan harmoni merentas kaum.</p>
+                        </div>
+                    </div>
+        
                 </div>
         
-                <!-- Card 2 -->
-                <div class="card" onclick="openCardModal(this)" data-full-text="Kesepaduan sosial merujuk kepada keadaan berbaik-baik, kestabilan, dan rasa kebersamaan yang wujud antara rakyat pelbagai kaum dan latar belakang di Malaysia melalui interaksi sosial harian." style="cursor: pointer; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; flex-direction: column; height: 100%;">
-                    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80" alt="Kuala Lumpur Skyline" style="width: 100%; height: 180px; object-fit: cover;">
-                    <div class="card-body" style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
-                        <h3 style="margin: 0 0 8px 0; font-size: 18px; color: #111;">Kesepaduan Sosial</h3>
-                        <p style="margin: 0; color: #555; font-size: 14px; line-height: 1.5;">Interaksi harian yang membina hubungan harmoni merentas kaum.</p>
-                    </div>
+                <!-- Right Side: Definisi Kepelbagaian Budaya Box -->
+                <div style="background: #ffffff; border-radius: 12px; padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); height: 100%;">
+                    <h3 style="margin-top: 0; margin-bottom: 16px; color: #111; font-size: 20px;">Definisi Kepelbagaian Budaya</h3>
+                    <p style="margin: 0 0 12px 0; color: #555; font-size: 14px; line-height: 1.6;">
+                        Menurut kamus Dewan (2005) edisi keempat muka surat 102, kepelbagaian ialah perihal berbagai-bagai jenis.
+                    </p>
+                    <p style="margin: 0 0 12px 0; color: #555; font-size: 14px; line-height: 1.6;">
+                        Kepelbagaian merangkumi banyak benda sama ada abstrak atau konkrit yang boleh diperoleh di sesuatu tempat atau kawasan yang sama.
+                    </p>
+                    <p style="margin: 0 0 12px 0; color: #555; font-size: 14px; line-height: 1.6;">
+                        Budaya pula merupakan cara hidup manusia yang dibentuk supaya dapat berinteraksi dan menyesuaikan diri dengan masyarakat dan alam sekitar.
+                    </p>
+                    <p style="margin: 0 0 12px 0; color: #555; font-size: 14px; line-height: 1.6;">
+                        Perkataan budaya berasal daripada cantuman perkataan Sanskrit dan Melayu, iaitu “budhi” dan “daya”.
+                    </p>
+                    <p style="margin: 0 0 12px 0; color: #555; font-size: 14px; line-height: 1.6;">
+                        Perkataan “budhi” yang dipinjam daripada bahasa Sanskrit bererti kecergasan fikiran dan akal.
+                    </p>
+                    <p style="margin: 0; color: #555; font-size: 14px; line-height: 1.6;">
+                        Perkataan “daya” pula ialah perkataan Melayu Polynesia yang bermakna kekuatan kuasa, tenaga dan pengaruh (Shamsul Amri baharuddin,2007:13).
+                    </p>
                 </div>
         
+            </div>
+        
+            <!-- Bottom Section: Additional Notes -->
+            <div style="background: #ffffff; border-radius: 12px; padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                <p style="margin: 0 0 12px 0; color: #555; font-size: 14px; line-height: 1.6;">
+                    Mengikut Kamus Dewan (2005) edisi keempat muka surat 212 menyatakan budaya membawa maksud tamadun, peradaban, kemajuan fikiran dan akal budi.
+                </p>
+                <p style="margin: 0 0 12px 0; color: #555; font-size: 14px; line-height: 1.6;">
+                    Budaya merupakan antara faktor yang melahirkan sesuatu masyarakat dan bangsa yang dinilai berdasarkan di atas kejayaan dan kekuatan tamadun yang dibangunkan.
+                </p>
+                <p style="margin: 0 0 12px 0; color: #555; font-size: 14px; line-height: 1.6;">
+                    Sebagai contoh, kaum Cina di Malaysia merupakan kaum yang paling berpengaruh dan memainkan peranan penting dalam pembangunan ekonomi negara Malaysia.
+                </p>
+                <p style="margin: 0 0 12px 0; color: #555; font-size: 14px; line-height: 1.6;">
+                    Fakta ini adalah hakikat yang telah membawa kepada kejayaan kaum Cina sejak dari awal penghijrahan mereka ke Tanah Melayu pada abad ke-19 (Sheela Abraham,1986:56).
+                </p>
+                <p style="margin: 0; color: #555; font-size: 14px; line-height: 1.6;">
+                    Tidak ketinggalan juga kaum India telah berjaya bersaing dengan kaum Cina dan kaum Melayu sehingga mendapat tempat di dalam ekonomi dan politik negara ini.
+                </p>
             </div>
         </div>
 
