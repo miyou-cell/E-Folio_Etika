@@ -557,7 +557,7 @@
 
             <div class="grid-layout">
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=600&q=80" alt="Kuala Lumpur Skyline">
+                    <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=600&q=80" alt="Kuala Lumpur Skyline" data-description="Tulis penerangan panjang anda di sini tentang gambar ini...">
                     <div class="card-body">
                         <h4>Masyarakat Majmuk</h4>
                         <p>Pembentukan identiti nasional berasaskan keharmonian pelbagai etnik.</p>
@@ -1520,12 +1520,15 @@
         <p>&copy; 2026 E-Folio MPU21072 | Jabatan Pengajian Am, Politeknik Muadzam Shah</p>
     </footer>
     
-<!-- Image Modal Viewer -->
-    <div id="imageModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.75);">
+<!-- Image Modal Viewer with Caption -->
+    <div id="imageModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.85);">
         <span id="closeBtn" style="position: absolute; top: 20px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer;">&times;</span>
-        <img id="expandedImg" style="margin: auto; display: block; max-width: 85%; max-height: 85vh; margin-top: 5vh; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.5);">
+        <div style="margin: auto; display: block; width: 80%; max-width: 700px; text-align: center; position: relative; top: 50%; transform: translateY(-50%);">
+            <img id="expandedImg" style="width: 100%; max-height: 60vh; object-fit: contain; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.5);">
+            <p id="caption" style="margin-top: 15px; color: #f1f1f1; font-size: 16px; line-height: 1.5; font-family: sans-serif;"></p>
+        </div>
     </div>
-
+    
     <!-- JavaScript Controls -->
     <script>
         // Tab switching logic
@@ -1559,10 +1562,11 @@
             document.getElementById("drawerOverlay").classList.toggle("active");
         }
 
-        // Image Modal logic (safely wrapped)
+        // Image Modal logic with caption support
         document.addEventListener("DOMContentLoaded", function() {
             const modal = document.getElementById("imageModal");
             const modalImg = document.getElementById("expandedImg");
+            const captionText = document.getElementById("caption");
             const closeBtn = document.getElementById("closeBtn");
             const images = document.querySelectorAll(".card img");
 
@@ -1571,6 +1575,8 @@
                 img.addEventListener("click", function() {
                     modal.style.display = "block";
                     modalImg.src = this.src;
+                    // Pulls text from the image's data-description attribute
+                    captionText.innerHTML = this.getAttribute("data-description") || "No description provided.";
                 });
             });
 
