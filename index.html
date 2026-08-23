@@ -1520,12 +1520,13 @@
         <p>&copy; 2026 E-Folio MPU21072 | Jabatan Pengajian Am, Politeknik Muadzam Shah</p>
     </footer>
     
+<!-- Image Modal Viewer -->
     <div id="imageModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.75);">
         <span id="closeBtn" style="position: absolute; top: 20px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer;">&times;</span>
         <img id="expandedImg" style="margin: auto; display: block; max-width: 85%; max-height: 85vh; margin-top: 5vh; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.5);">
-    
     </div>
-<!-- JavaScript Controls -->
+
+    <!-- JavaScript Controls -->
     <script>
         // Tab switching logic
         function openTab(evt, tabName) {
@@ -1558,33 +1559,33 @@
             document.getElementById("drawerOverlay").classList.toggle("active");
         }
 
-        // Get modal elements
-        const modal = document.getElementById("imageModal");
-        const modalImg = document.getElementById("expandedImg");
-        const closeBtn = document.getElementById("closeBtn");
+        // Image Modal logic (safely wrapped)
+        document.addEventListener("DOMContentLoaded", function() {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("expandedImg");
+            const closeBtn = document.getElementById("closeBtn");
+            const images = document.querySelectorAll(".card img");
 
-        // Select all images inside the cards and make them clickable
-        const images = document.querySelectorAll(".card img");
-
-        images.forEach(img => {
-            // Optional: Add a pointer cursor inline via JS so users know it's clickable
-            img.style.cursor = "pointer";
-
-            img.addEventListener("click", function() {
-                modal.style.display = "block";
-                modalImg.src = this.src;
+            images.forEach(img => {
+                img.style.cursor = "pointer";
+                img.addEventListener("click", function() {
+                    modal.style.display = "block";
+                    modalImg.src = this.src;
+                });
             });
-        });
 
-        // Close modal when clicking the 'X' button
-        closeBtn.addEventListener("click", function() {
-            modal.style.display = "none";
-        });
+            if (closeBtn) {
+                closeBtn.addEventListener("click", function() {
+                    modal.style.display = "none";
+                });
+            }
 
-        // Close modal when clicking on the grayed-out background overlay
-        modal.addEventListener("click", function(event) {
-            if (event.target === modal) {
-                modal.style.display = "none";
+            if (modal) {
+                modal.addEventListener("click", function(event) {
+                    if (event.target === modal) {
+                        modal.style.display = "none";
+                    }
+                });
             }
         });
     </script>
